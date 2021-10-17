@@ -30,9 +30,9 @@ func main() {
 		}
 
 		if rand.Float64() > 0.75 {
-			sugar.Errorw("Response failed", "response", s)
+			sugar.Errorw("Response failed", "response", s, "service", "testgozap")
 		} else {
-			sugar.Infow("Response received", "response", s)
+			sugar.Infow("Response received", "response", s, "service", "testgozap")
 		}
 
 		time.Sleep(3 * time.Second)
