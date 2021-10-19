@@ -21,11 +21,15 @@ namespace ServiceC
                     .ReadFrom.Configuration(context.Configuration)
                     .ReadFrom.Services(services)
                     .Enrich.WithProperty("service", "ServiceC")
-                    //.WriteTo.Console(new JsonFormatter(renderMessage: true))
+                    .WriteTo.Console(new JsonFormatter(renderMessage: true))
                     .WriteTo.Sink<FluentBitSink>()
                     .MinimumLevel.Debug()
                 )
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://localhost:80");
+                });
         }
     }
 }
