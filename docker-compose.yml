@@ -17,6 +17,6 @@ services:
   service-c:
     build: "./serviceC"
     ports:
-      - "5001:5001"
+      - "80:80"
     depends_on:
       - fluent-bit
