@@ -1,40 +1,49 @@
 package main
 
 import (
-	"fmt"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
+	"github.com/KirillBogatikov/logger"
+	"github.com/google/uuid"
 	"math/rand"
 	"time"
 )
 
 type S struct {
-	Name string `json:"name"`
+	Id   string `json:"id"`
 	Code int    `json:"code"`
 }
 
+const dataFormat = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+culpa qui officia deserunt mollit anim id est laborum. `
+
 func main() {
-	cfg := zap.NewProductionConfig()
-	cfg.EncoderConfig.TimeKey = "timestamp"
-	cfg.EncoderConfig.EncodeTime = zapcore.RFC3339TimeEncoder
-
-	log, _ := cfg.Build()
-	defer log.Sync()
-
+	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:5710").Lock(), logger.NewEncoderConfig(), "A")
+	defer func() { _ = log.Sync() }()
 	sugar := log.Sugar()
 
 	for {
-		s := &S{
-			Name: fmt.Sprintf("Ivan-%d", rand.Int()),
-			Code: rand.Intn(255),
-		}
+		r := rand.NormFloat64()
+		var code int
 
-		if rand.Float64() > 0.75 {
-			sugar.Errorw("Response failed", "response", s, "service", "testgozap")
+		if r < 0.33 {
+			code = 200
+		} else if r < 0.66 {
+			code = 201
 		} else {
-			sugar.Infow("Response received", "response", s, "service", "testgozap")
+			code = 404
 		}
 
+		s := &S{
+			Id:   uuid.NewString(),
+			Code: code,
+		}
+
+		sugar.Infow("Response received", "response", s)
+		sugar.Infow("Multiline log", "data", dataFormat)
 		time.Sleep(3 * time.Second)
 	}
 }

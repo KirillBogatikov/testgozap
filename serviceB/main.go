@@ -1,40 +1,45 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"github.com/KirillBogatikov/logger"
-	"github.com/google/uuid"
-	"math/rand"
+	"net/http"
 	"time"
 )
 
-type S struct {
-	Id   string `json:"id"`
-	Code int    `json:"code"`
+type Payload struct {
+	Name  string `json:"name"`
+	Phone string `json:"phone"`
 }
 
 func main() {
-	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:24224").Lock(), logger.NewEncoderConfig(), "A")
+	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:5710").Lock(), logger.NewEncoderConfig(), "A")
 	defer func() { _ = log.Sync() }()
 	sugar := log.Sugar()
 
+	client := http.Client{
+		Timeout: 15 * time.Second,
+	}
+
 	for {
-		r := rand.NormFloat64()
-		var code int
-
-		if r < 0.33 {
-			code = 200
-		} else if r < 0.66 {
-			code = 201
-		} else {
-			code = 404
+		payload := &Payload{
+			Name:  "Ivan Ivanov",
+			Phone: "8-800-555-35-35",
 		}
 
-		s := &S{
-			Id: uuid.NewString(),
-			Code: code,
+		data, err := json.Marshal(payload)
+		if err != nil {
+			sugar.Fatalw("can't marshal payload", "error", err)
+			continue
 		}
 
-		sugar.Infow("Response received", "response", s)
-		time.Sleep(3 * time.Second)
+		_, err = client.Post("https://ahaha.ahaha", "application/json", bytes.NewReader(data))
+		if err != nil {
+			sugar.Fatalw("request failed", "error", err)
+			continue
+		}
+
+		time.Sleep(5 * time.Second)
 	}
 }

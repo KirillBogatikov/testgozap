@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  fluent-bit:
+    image: "fluent/fluent-bit:latest"
+    volumes:
+      - ./fluent-bit.conf:/fluent-bit/conf/fluent-bit.conf
+    ports:
+      - "5710:5710"
+  service-a:
+    build: "./serviceA"
+    depends_on:
+      - fluent-bit
+  service-b:
+    build: "./serviceB"
+    depends_on:
+      - fluent-bit
+  service-c:
+    build: "./serviceC"
+    depends_on:
+      - fluent-bit
