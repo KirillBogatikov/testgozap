@@ -4,7 +4,7 @@ EXPOSE 80
 COPY . .
 WORKDIR /app/ServiceC
 RUN dotnet restore
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet publish -c Release -o out
 FROM build
 WORKDIR /app
 COPY --from=build /app/ServiceC/out .
