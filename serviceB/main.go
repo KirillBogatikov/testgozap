@@ -30,13 +30,13 @@ func main() {
 
 		data, err := json.Marshal(payload)
 		if err != nil {
-			sugar.Fatalw("can't marshal payload", "error", err)
+			sugar.Errorw("can't marshal payload", "error", err)
 			continue
 		}
 
 		_, err = client.Post("https://ahaha.ahaha", "application/json", bytes.NewReader(data))
 		if err != nil {
-			sugar.Fatalw("request failed", "error", err)
+			sugar.Errorw("request failed", "error", err)
 			continue
 		}
 
