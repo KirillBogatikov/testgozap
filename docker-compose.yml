@@ -3,7 +3,7 @@ services:
   fluent-bit:
     image: "fluent/fluent-bit:latest"
     volumes:
-      - ./fluent-bit.conf:/fluent-bit/conf/fluent-bit.conf
+      - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
     ports:
       - "5710:5710"
   service-a:
