@@ -28,5 +28,7 @@ namespace FluentLogger.Interfaces
         public string CallerField => "caller";
         public string ExceptionField => "error";
         public Regex ExcludedStackTrace => new Regex("at (System.|FluentLogger.)",RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+        public IDictionary<string, object> StaticFields => new Dictionary<string, object>();
     }
 }

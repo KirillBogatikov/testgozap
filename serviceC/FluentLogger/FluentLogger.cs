@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -61,14 +62,14 @@ namespace FluentLogger
                     .Split("\r\n")
                     .FirstOrDefault(l => !(settings.ExcludedStackTrace?.IsMatch(l) ?? false));
 
-                var data = new Dictionary<string, object>
+                var data = new Dictionary<string, object>(settings.StaticFields)
                 {
                     { settings.LevelField, levelName },
                     { settings.MessageField, message },
                     { settings.CallerField, stackTrace?.Trim(' ', '\t') },
                     { settings.TimestampField, DateTime.UtcNow.ToString(settings.TimestampFormat) }
                 };
-
+                
                 for (var i = 0; i < properties.Length; i += 2)
                 {
                     if (properties[i] != null)
