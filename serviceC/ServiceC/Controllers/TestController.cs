@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using FluentLogger.Extensions;
+using FluentLogger.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceC.Controllers
 {
@@ -7,9 +8,9 @@ namespace ServiceC.Controllers
     [Route("test")]
     public class TestController : Controller
     {
-        private readonly ILogger<TestController> _logger;
+        private readonly IFluentLogger _logger;
 
-        public TestController(ILogger<TestController> logger)
+        public TestController(IFluentLogger logger)
         {
             _logger = logger;
         }

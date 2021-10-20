@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceC", "ServiceC.csproj", "{1C2CEC41-FF56-478A-B027-F7AB4FBF9F86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceC", "ServiceC\ServiceC.csproj", "{241EF309-3854-4959-AC9C-64F527E0E8CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentSink", "FluentSink\FluentSink.csproj", "{D15DC993-0603-4C07-ACBD-11A8BA0ED6E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentLogger", "FluentLogger\FluentLogger.csproj", "{1DABF65A-F89B-46DB-A702-516B67BF6A96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +12,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1C2CEC41-FF56-478A-B027-F7AB4FBF9F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C2CEC41-FF56-478A-B027-F7AB4FBF9F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C2CEC41-FF56-478A-B027-F7AB4FBF9F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C2CEC41-FF56-478A-B027-F7AB4FBF9F86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{241EF309-3854-4959-AC9C-64F527E0E8CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{241EF309-3854-4959-AC9C-64F527E0E8CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{241EF309-3854-4959-AC9C-64F527E0E8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{241EF309-3854-4959-AC9C-64F527E0E8CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15DC993-0603-4C07-ACBD-11A8BA0ED6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15DC993-0603-4C07-ACBD-11A8BA0ED6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15DC993-0603-4C07-ACBD-11A8BA0ED6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15DC993-0603-4C07-ACBD-11A8BA0ED6E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DABF65A-F89B-46DB-A702-516B67BF6A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DABF65A-F89B-46DB-A702-516B67BF6A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DABF65A-F89B-46DB-A702-516B67BF6A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DABF65A-F89B-46DB-A702-516B67BF6A96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

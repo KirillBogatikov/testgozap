@@ -1,7 +1,7 @@
+using FluentLogger.Interfaces;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Serilog;
-using Serilog.Formatting.Json;
 
 namespace ServiceC
 {
@@ -15,14 +15,10 @@ namespace ServiceC
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                .UseSerilog((context, services, configuration) => configuration
-                    .ReadFrom.Configuration(context.Configuration)
-                    .ReadFrom.Services(services)
-                    .Enrich.WithProperty("service", "C")
-                    .WriteTo.Console(new JsonFormatter(renderMessage: true))
-                    .WriteTo.Sink<FluentBitSink>()
-                    .MinimumLevel.Debug()
-                )
+                .ConfigureServices(services => 
+                    services
+                        .AddSingleton<IFluentSettings, Settings>()
+                        .AddSingleton<IFluentLogger, FluentLogger.FluentLogger>())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
