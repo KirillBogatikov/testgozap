@@ -26,7 +26,7 @@ namespace ServiceC
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://localhost:80");
+                    webBuilder.UseUrls("http://*:80");
                 });
         }
     }
