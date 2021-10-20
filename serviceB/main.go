@@ -14,7 +14,7 @@ type Payload struct {
 }
 
 func main() {
-	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:5710").Lock(), logger.NewEncoderConfig(), "A")
+	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:5710").Lock(), logger.NewEncoderConfig(), "B")
 	defer func() { _ = log.Sync() }()
 	sugar := log.Sugar()
 

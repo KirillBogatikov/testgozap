@@ -18,7 +18,7 @@ namespace ServiceC
                 .UseSerilog((context, services, configuration) => configuration
                     .ReadFrom.Configuration(context.Configuration)
                     .ReadFrom.Services(services)
-                    .Enrich.WithProperty("service", "ServiceC")
+                    .Enrich.WithProperty("service", "C")
                     .WriteTo.Console(new JsonFormatter(renderMessage: true))
                     .WriteTo.Sink<FluentBitSink>()
                     .MinimumLevel.Debug()
