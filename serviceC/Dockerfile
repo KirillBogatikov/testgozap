@@ -4,16 +4,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["ServiceC.csproj", "./"]
-RUN dotnet restore "ServiceC.csproj"
+COPY ["ServiceC/ServiceC.csproj", "./"]
+RUN dotnet restore "ServiceC/ServiceC.csproj"
 COPY . .
 WORKDIR "/src/"
-RUN dotnet build "ServiceC.csproj" -c Release -o /app/build
+RUN dotnet build "ServiceC/ServiceC.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ServiceC.csproj" -c Release -o /app/publish
+RUN dotnet publish "ServiceC/ServiceC.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ServiceC.dll"]
+ENTRYPOINT ["dotnet", "ServiceC/ServiceC.dll"]
