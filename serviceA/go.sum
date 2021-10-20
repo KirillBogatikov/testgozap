@@ -1,5 +1,7 @@
 github.com/KirillBogatikov/logger v0.0.1 h1:xv9uJoxMBEUsA2dxFwq4Xm3h9xp4nwhhqepvyZXNnzk=
 github.com/KirillBogatikov/logger v0.0.1/go.mod h1:9RjPiuhAdpACf0R5Q5rVF5KKbdYXWvx59zZBvgMkj/I=
+github.com/KirillBogatikov/logger-go v0.0.2 h1:cJya5TvGq5S7XyY9peNfTyND6xPWkALbv5aLXSaroGM=
+github.com/KirillBogatikov/logger-go v0.0.2/go.mod h1:DDNiUgwlPaAm+fqDckzsouH4eqvH8tVDlfszjeuoNCE=
 github.com/benbjohnson/clock v1.1.0 h1:Q92kusRqC1XV2MjkWETPvjJVqKetz1OzxZB7mHJLju8=
 github.com/benbjohnson/clock v1.1.0/go.mod h1:J11/hYXuz8f4ySSvYwY0FKfm+ezbsZBKZxNJlLklBHA=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

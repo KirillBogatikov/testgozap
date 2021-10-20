@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/KirillBogatikov/logger"
+	"github.com/KirillBogatikov/logger-go"
 	"net/http"
 	"time"
 )
@@ -14,7 +14,7 @@ type Payload struct {
 }
 
 func main() {
-	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:5710").Lock(), logger.NewEncoderConfig(), "B")
+	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:5710", logger.DefaultTimeout).Lock(), logger.NewEncoderConfig(), "B")
 	defer func() { _ = log.Sync() }()
 	sugar := log.Sugar()
 

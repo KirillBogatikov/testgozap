@@ -1,6 +1,6 @@
-# github.com/KirillBogatikov/logger v0.0.1
+# github.com/KirillBogatikov/logger-go v0.0.2
 ## explicit
-github.com/KirillBogatikov/logger
+github.com/KirillBogatikov/logger-go
 # github.com/google/uuid v1.3.0
 ## explicit
 github.com/google/uuid

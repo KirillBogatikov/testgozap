@@ -1,4 +1,4 @@
-module github.com/KirillBogatikov/logger
+module github.com/KirillBogatikov/logger-go
 
 go 1.15
 

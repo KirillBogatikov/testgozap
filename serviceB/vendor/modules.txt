@@ -1,6 +1,6 @@
-# github.com/KirillBogatikov/logger v0.0.1
+# github.com/KirillBogatikov/logger-go v0.0.2
 ## explicit
-github.com/KirillBogatikov/logger
+github.com/KirillBogatikov/logger-go
 # go.uber.org/atomic v1.7.0
 go.uber.org/atomic
 # go.uber.org/multierr v1.6.0

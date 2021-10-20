@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const timeout = 15 * time.Second
+const DefaultTimeout = 15 * time.Second
 
 type FluentBit struct {
 	url       string
@@ -18,7 +18,7 @@ type FluentBit struct {
 	waitGroup sync.WaitGroup
 }
 
-func NewFluentBit(url string) *FluentBit {
+func NewFluentBit(url string, timeout time.Duration) *FluentBit {
 	fb := &FluentBit{
 		url:    url,
 		client: &http.Client{Timeout: timeout},
@@ -31,15 +31,13 @@ func NewFluentBit(url string) *FluentBit {
 }
 
 func (f *FluentBit) run() {
-	f.waitGroup.Add(1)
 	for {
-		f.waitGroup.Done()
-
 		data, ok := <-f.queue
 		if !ok {
 			break
 		}
 
+		f.waitGroup.Done()
 		log.Print(string(data))
 		resp, err := f.client.Post(f.url, "application/json", bytes.NewReader(data))
 		if err != nil {
@@ -54,8 +52,8 @@ func (f *FluentBit) run() {
 }
 
 func (f *FluentBit) Write(p []byte) (n int, err error) {
-	f.queue <- p
 	f.waitGroup.Add(1)
+	f.queue <- p
 	return len(p), nil
 }
 

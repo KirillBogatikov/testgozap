@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/KirillBogatikov/logger"
+	"github.com/KirillBogatikov/logger-go"
 	"github.com/google/uuid"
 	"math/rand"
 	"time"
@@ -21,7 +21,7 @@ pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
 culpa qui officia deserunt mollit anim id est laborum. `
 
 func main() {
-	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:5710").Lock(), logger.NewEncoderConfig(), "A")
+	log := logger.NewZap(logger.NewFluentBit("http://192.168.5.4:5710", logger.DefaultTimeout).Lock(), logger.NewEncoderConfig(), "A")
 	defer func() { _ = log.Sync() }()
 	sugar := log.Sugar()
 
