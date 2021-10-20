@@ -1,19 +1,11 @@
-FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS build
 WORKDIR /app
 EXPOSE 80
-
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
-WORKDIR /src
-COPY ["ServiceC/ServiceC.csproj", "./"]
-RUN dotnet restore "ServiceC/ServiceC.csproj"
 COPY . .
-WORKDIR "/src/ServiceC"
-RUN dotnet build "ServiceC.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "ServiceC.csproj" -c Release -o /app/publish
-
-FROM base AS final
+WORKDIR /app/ServiceC
+RUN dotnet restore
+RUN dotnet publish -c Release -o /app/publish
+FROM build
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/ServiceC/out .
 ENTRYPOINT ["dotnet", "ServiceC.dll"]
