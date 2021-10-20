@@ -29,8 +29,8 @@ namespace FluentLogger
         {
             var props = new List<object>
             {
-                "error", exception.Message,
-                "stacktrace", exception.StackTrace ?? ""
+                settings.ExceptionField, exception.Message,
+                settings.StackTraceField, exception.StackTrace ?? ""
             };
             props.AddRange(properties);
             
