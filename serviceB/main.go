@@ -23,6 +23,8 @@ func main() {
 	}
 
 	for {
+		time.Sleep(5 * time.Second)
+
 		payload := &Payload{
 			Name:  "Ivan Ivanov",
 			Phone: "8-800-555-35-35",
@@ -39,7 +41,5 @@ func main() {
 			sugar.Errorw("request failed", "error", err)
 			continue
 		}
-
-		time.Sleep(5 * time.Second)
 	}
 }
