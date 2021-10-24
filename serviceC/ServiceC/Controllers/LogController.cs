@@ -1,4 +1,5 @@
-﻿using FluentLogger.Interfaces;
+﻿using System;
+using FluentLogger.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -15,8 +16,8 @@ namespace ServiceC.Controllers
             _fluentLogger = fluentLogger;
         }
 
-        [HttpGet("{level}")]
-        public IActionResult Get([FromRoute] LogLevel level, [FromQuery] string message)
+        [HttpGet]
+        public IActionResult Get(LogLevel level, string message)
         {
             _fluentLogger.Log(level, message);
             return Ok(level);
