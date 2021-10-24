@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 namespace ServiceC.Controllers
 {
     [Controller]
-    [Route("/log")]
+    [Route("log")]
     public class LogController : Controller
     {
         private IFluentLogger _fluentLogger;
